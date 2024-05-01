@@ -7,13 +7,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "docker compose -f docker-compose.yaml up",
-    "seed": "tsx seed.ts",
-    "_migrate": "pg-migrations apply --directory ./migrations --database $ELECTRIC_PROXY",
-    "migrate": "npx dotenv-run-script _migrate",
-    "_migrate_data": "tsx migrate-data.ts",
-    "migrate:data": "npx dotenv-run-script .env _migrate_data",
-    "_proxy": "npx electric-sql proxy-tunnel --service $ELECTRIC_PROXY",
-    "proxy": "npx dotenv-run-script .env _proxy"
+    "migrate": "pg-migrations apply --directory ./migrations --database postgresql://postgres:proxy_password@localhost:65432/postgres",
+    "seed": "tsx migrate-data.ts"
   },
   "author": "",
   "license": "ISC",

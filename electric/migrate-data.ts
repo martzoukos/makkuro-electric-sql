@@ -6,7 +6,8 @@ const migrationsFolder = './migrations/data';
 async function seed() {
   const { Client } = pg
   const client = new Client({
-    connectionString: process.env.DATABASE_URL
+    // Postgres URL, not Electric Proxy URL
+    connectionString: 'postgresql://postgres:pg_password@localhost:5433/postgres'
   })
   await client.connect()
   try {
